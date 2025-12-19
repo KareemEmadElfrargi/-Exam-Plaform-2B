@@ -92,7 +92,6 @@ a {
     }
 
     .exam-header>div {
-        width: 100%;
         justify-content: center;
         align-items: center !important;
     }
@@ -121,6 +120,15 @@ a {
 
     .card {
         padding: 1.5rem 1rem;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .floating-icon {
+        width: 100% !important;
+        max-width: 300px !important;
+        height: auto !important;
     }
 
     /* Fix CodeEditor Button on Mobile */
