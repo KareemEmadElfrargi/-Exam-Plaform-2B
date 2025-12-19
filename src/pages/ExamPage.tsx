@@ -223,16 +223,21 @@ const ExamPage: React.FC<ExamPageProps> = ({ questions, user, onRetry }) => {
 
 
                 {/* Header */}
-                <header style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginBottom: '2rem',
-                    background: 'var(--bg-card)',
-                    padding: '1rem',
-                    borderRadius: '12px',
-                    border: '1px solid var(--border)'
-                }}>
+                {/* Header */}
+                <header
+                    className="exam-header"
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginBottom: '2rem',
+                        background: 'var(--bg-card)',
+                        padding: '1rem',
+                        borderRadius: '12px',
+                        border: isLowTime ? '1px solid var(--danger)' : '1px solid var(--border)',
+                        boxShadow: isLowTime ? '0 0 10px rgba(218, 54, 51, 0.3)' : 'none',
+                        transition: 'all 0.3s ease'
+                    }}>
                     <div style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -242,8 +247,8 @@ const ExamPage: React.FC<ExamPageProps> = ({ questions, user, onRetry }) => {
                         padding: '0.5rem 1rem',
                         borderRadius: '12px',
                         // background: 'var(--bg-hover)', // Fallback
-                        border: isLowTime ? '1px solid var(--danger)' : '1px solid var(--border)',
-                        boxShadow: isLowTime ? '0 0 10px rgba(218, 54, 51, 0.3)' : 'none',
+                        // border: isLowTime ? '1px solid var(--danger)' : '1px solid var(--border)', // Removed to use class
+                        // boxShadow: isLowTime ? '0 0 10px rgba(218, 54, 51, 0.3)' : 'none', // Removed to use class
                         transition: 'all 0.3s ease'
                     }}>
                         <div style={{
@@ -291,7 +296,7 @@ const ExamPage: React.FC<ExamPageProps> = ({ questions, user, onRetry }) => {
                         </button>
                     </div>
 
-                    <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '1.5rem', fontWeight: 'bold' }}>
+                    <div className="exam-header-title" style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '1.5rem', fontWeight: 'bold' }}>
                         هذا الاختبار مقدم من <span style={{ color: 'var(--primary)' }}>2B School</span>
                     </div>
 
@@ -355,7 +360,7 @@ const ExamPage: React.FC<ExamPageProps> = ({ questions, user, onRetry }) => {
                 />
 
                 {/* Footer Navigation */}
-                <div style={{
+                <div className="footer-nav" style={{
                     position: 'fixed',
                     bottom: 0,
                     left: 0,

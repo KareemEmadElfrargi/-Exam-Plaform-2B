@@ -83,6 +83,43 @@ a {
     gap: 0.5rem;
 }
 
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .exam-header {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .exam-header > div {
+        width: 100%;
+        justify-content: center;
+        align-items: center !important;
+    }
+    
+    .exam-header-title {
+        order: -1; /* Show title at top on mobile */
+        font-size: 1.2rem !important;
+    }
+    
+    .footer-nav .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .footer-nav button {
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+
+    .card {
+        padding: 1rem;
+    }
+}
+
 .btn-primary {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
