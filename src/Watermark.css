@@ -1,0 +1,51 @@
+@keyframes floatWatermark {
+    0% {
+        transform: translate(0, 0) rotate(-15deg);
+        opacity: 0.1;
+    }
+
+    25% {
+        transform: translate(100px, 50px) rotate(-10deg);
+        opacity: 0.15;
+    }
+
+    50% {
+        transform: translate(50px, 100px) rotate(-15deg);
+        opacity: 0.1;
+    }
+
+    75% {
+        transform: translate(-50px, 50px) rotate(-20deg);
+        opacity: 0.15;
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(-15deg);
+        opacity: 0.1;
+    }
+}
+
+.watermark-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.watermark {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.08);
+    /* Very faint white */
+    transform: rotate(-30deg);
+    user-select: none;
+    pointer-events: none;
+}
