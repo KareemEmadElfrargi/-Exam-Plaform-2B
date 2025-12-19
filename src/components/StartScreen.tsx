@@ -106,7 +106,15 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
                     </div>
                 )}
 
-                <div className="card animate-fade-in" style={{ width: '100%', maxWidth: '600px', backdropFilter: 'blur(10px)', background: 'rgba(22, 27, 34, 0.8)', padding: '1.5rem' }}>
+                <div className="card animate-fade-in" style={{
+                    width: '100%',
+                    maxWidth: '600px',
+                    backdropFilter: 'blur(10px)',
+                    background: 'rgba(22, 27, 34, 0.8)',
+                    padding: '1.5rem',
+                    boxSizing: 'border-box', // Ensure padding doesn't affect width
+                    margin: '1rem', // Add margin for small screens
+                }}>
                     <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                         <div className="floating-icon" style={{
                             width: '450px',
@@ -116,7 +124,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
                             alignItems: 'center',
                             justifyContent: 'center'
                         }}>
-                            <img src="/logo.png" alt="2B School Logo" style={{ width: '100%', height: '50%', objectFit: 'contain' }} />
+                            <img src="/logo.png" alt="2B School Logo" style={{ maxWidth: '100%', height: 'auto', maxHeight: '50px', objectFit: 'contain' }} />
                         </div>
                         <h1 style={{ margin: 0, fontSize: '1.75rem' }}>أهلا بك في 2B School</h1>
                         <p style={{ color: 'var(--text-muted)', margin: '0.5rem 0 0' }}>
@@ -258,9 +266,14 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
                             className="btn btn-primary"
                             style={{ marginTop: '1rem', width: '100%' }}
                         >
-                            {showOtpInput ? 'تحقق وبدء الاختبار' : 'إرسال رمز التحقق'}
+                            {showOtpInput ? 'تحقق وبدء الاختبار' : 'إرسال رمز التحقق (محاكاة)'}
                             {showOtpInput ? <ArrowLeft size={20} /> : <ShieldCheck size={20} />}
                         </button>
+                        {!showOtpInput && (
+                            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textAlign: 'center', margin: '0.5rem 0 0' }}>
+                                ملحوظة: سيظهر رمز التحقق في إشعار بالأعلى (تجريبي).
+                            </p>
+                        )}
                     </form>
                 </div>
             </div>
