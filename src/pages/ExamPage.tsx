@@ -215,7 +215,7 @@ const ExamPage: React.FC<ExamPageProps> = ({ questions, user, onRetry }) => {
             )}
             <div className="container" style={{
                 padding: '2rem 1rem',
-                paddingBottom: '100px',
+                paddingBottom: '200px',
                 filter: isBlur ? 'blur(15px)' : 'none',
                 transition: 'filter 0.3s',
                 pointerEvents: isBlur ? 'none' : 'auto'
