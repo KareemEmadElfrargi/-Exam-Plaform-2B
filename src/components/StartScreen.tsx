@@ -14,13 +14,9 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
     const [gender, setGender] = useState<'male' | 'female'>('male');
     const [error, setError] = useState('');
 
-    // OTP State
-    const [showOtpInput, setShowOtpInput] = useState(false);
-    const [generatedOtp, setGeneratedOtp] = useState('');
-    const [enteredOtp, setEnteredOtp] = useState('');
-    const [smsMessage, setSmsMessage] = useState('');
 
-    const handleSendOtp = (e: React.FormEvent) => {
+
+    const handleStart = (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
 
@@ -39,27 +35,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
             return;
         }
 
-        // Simulate sending OTP
-        const otp = Math.floor(1000 + Math.random() * 9000).toString();
-        setGeneratedOtp(otp);
-        setShowOtpInput(true);
-
-        // Simulate SMS delay
-        setTimeout(() => {
-            setSmsMessage(`💬 2B School: رمز التحقق الخاص بك هو ${otp}`);
-            // Hide notification after 6 seconds
-            setTimeout(() => setSmsMessage(''), 6000);
-        }, 1500);
-    };
-
-    const handleVerifyOtp = (e: React.FormEvent) => {
-        e.preventDefault();
-
-        if (enteredOtp === generatedOtp) {
-            onStart({ name, governorate, mobile, gender });
-        } else {
-            setError('عفواً، رمز التحقق غير صحيح');
-        }
+        onStart({ name, governorate, mobile, gender });
     };
 
 
@@ -76,35 +52,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
         }}>
             <div className="container flex-center" style={{ minHeight: '100vh', position: 'relative', zIndex: 1 }}>
 
-                {/* Simulated SMS Notification */}
-                {smsMessage && (
-                    <div className="animate-fade-in" style={{
-                        position: 'fixed',
-                        top: '20px',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        background: 'rgba(22, 27, 34, 0.95)',
-                        border: '1px solid var(--primary)',
-                        padding: '1rem 2rem',
-                        borderRadius: '50px',
-                        boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
-                        zIndex: 2000,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '1rem',
-                        backdropFilter: 'blur(10px)',
-                        minWidth: '300px',
-                        justifyContent: 'center'
-                    }}>
-                        <div style={{ background: 'var(--primary)', borderRadius: '50%', padding: '0.5rem', display: 'flex' }}>
-                            <MessageCircle size={24} color="white" />
-                        </div>
-                        <div style={{ display: 'flex', flexDirection: 'column' }}>
-                            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>الرسائل - الآن</span>
-                            <span style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'white' }}>{smsMessage.split('هو')[1]}</span>
-                        </div>
-                    </div>
-                )}
+
 
                 <div className="card animate-fade-in" style={{
                     width: '100%',
@@ -135,7 +83,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
                         </p>
                     </div>
 
-                    <form onSubmit={showOtpInput ? handleVerifyOtp : handleSendOtp} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <form onSubmit={handleStart} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                         <div>
                             <label style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                 <User size={18} color="var(--primary)" />
@@ -242,38 +190,14 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
                             {error && <p style={{ color: 'var(--danger)', fontSize: '0.9rem', marginTop: '0.5rem' }}>{error}</p>}
                         </div>
 
-                        {showOtpInput && (
-                            <div className="animate-fade-in">
-                                <label style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                    <ShieldCheck size={18} color="var(--primary)" />
-                                    رمز التحقق (OTP)
-                                </label>
-                                <input
-                                    type="text"
-                                    className="input-field"
-                                    placeholder="أدخل الرمز المكون من 4 أرقام"
-                                    value={enteredOtp}
-                                    onChange={(e) => setEnteredOtp(e.target.value)}
-                                    maxLength={4}
-                                    style={{ letterSpacing: '0.5rem', textAlign: 'center', fontWeight: 'bold' }}
-                                    autoFocus
-                                />
-                            </div>
-                        )}
-
                         <button
                             type="submit"
                             className="btn btn-primary"
                             style={{ marginTop: '1rem', width: '100%' }}
                         >
-                            {showOtpInput ? 'تحقق وبدء الاختبار' : 'إرسال رمز التحقق (محاكاة)'}
-                            {showOtpInput ? <ArrowLeft size={20} /> : <ShieldCheck size={20} />}
+                            ابدأ الاختبار
+                            <ArrowLeft size={20} />
                         </button>
-                        {!showOtpInput && (
-                            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textAlign: 'center', margin: '0.5rem 0 0' }}>
-                                ملحوظة: سيظهر رمز التحقق في إشعار بالأعلى (تجريبي).
-                            </p>
-                        )}
                     </form>
                 </div>
             </div>
