@@ -3,6 +3,7 @@ import { UserState } from '../types';
 export interface ExamResult extends UserState {
     score: number;
     total: number;
+    timeTaken: string;
     date: string;
 }
 

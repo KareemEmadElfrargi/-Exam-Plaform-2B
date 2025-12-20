@@ -146,6 +146,8 @@ const ExamPage: React.FC<ExamPageProps> = ({ questions, user, onRetry }) => {
     };
 
     const finishExam = () => {
+        const timeTakenSeconds = TOTAL_TIME - timeLeft;
+        const timeTaken = formatTime(timeTakenSeconds);
         const score = calculateScore();
         const result = {
             name: user.name,
@@ -154,6 +156,7 @@ const ExamPage: React.FC<ExamPageProps> = ({ questions, user, onRetry }) => {
             gender: user.gender,
             score,
             total: questions.length,
+            timeTaken,
             date: new Date().toLocaleString('ar-EG')
         };
 
@@ -181,6 +184,7 @@ const ExamPage: React.FC<ExamPageProps> = ({ questions, user, onRetry }) => {
                 totalQuestions={questions.length}
                 user={user}
                 onRetry={onRetry}
+                timeTaken={formatTime(TOTAL_TIME - timeLeft)}
                 incorrectQuestions={incorrectQuestions}
             />
         );

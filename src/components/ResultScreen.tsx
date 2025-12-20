@@ -8,9 +8,10 @@ interface ResultScreenProps {
     user: UserState;
     onRetry: () => void;
     incorrectQuestions?: number[];
+    timeTaken: string;
 }
 
-const ResultScreen: React.FC<ResultScreenProps> = ({ score, totalQuestions, user, onRetry, incorrectQuestions = [] }) => {
+const ResultScreen: React.FC<ResultScreenProps> = ({ score, totalQuestions, user, onRetry, incorrectQuestions = [], timeTaken }) => {
     const percentage = Math.round((score / totalQuestions) * 100);
     const isPassed = percentage >= 50;
 
@@ -94,6 +95,17 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ score, totalQuestions, user
                         <p style={{ color: 'var(--text-muted)', marginBottom: '0.5rem', fontSize: '0.9rem' }}>الدرجة</p>
                         <p style={{ fontSize: '2rem', fontWeight: 'bold', margin: 0 }}>
                             {toArabicNum(score)} / {toArabicNum(totalQuestions)}
+                        </p>
+                    </div>
+                    <div style={{
+                        background: 'rgba(255,255,255,0.03)',
+                        padding: '1.5rem',
+                        borderRadius: '12px',
+                        border: '1px solid var(--border)'
+                    }}>
+                        <p style={{ color: 'var(--text-muted)', marginBottom: '0.5rem', fontSize: '0.9rem' }}>وقت الحل</p>
+                        <p style={{ fontSize: '2rem', fontWeight: 'bold', margin: 0, direction: 'ltr' }}>
+                            {timeTaken}
                         </p>
                     </div>
                 </div>

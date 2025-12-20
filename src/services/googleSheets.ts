@@ -1,7 +1,7 @@
 import { ExamResult } from './storage';
 
 // Replace this with your actual Google Apps Script Web App URL
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwhpfk-Nlppnb086Me3EZg5FN1oG7Rj_lou_gD0VM1Qf2fjPQPLQJUO2DZMeUI4H3hM/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2TMv7AuRYChVGEadIodqqbU8p1UI83KMSRGAloffpxQYIx02gWTYhSCVUqbpphmoy/exec';
 
 export const submitToGoogleSheet = async (data: ExamResult) => {
 
